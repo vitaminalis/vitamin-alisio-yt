@@ -1,0 +1,267 @@
+var favicon_link_html = document.createElement('link');
+favicon_link_html.rel = 'icon';
+favicon_link_html.href = 'http://mgx-script.com/favicon-32x32.png';
+favicon_link_html.type = 'image/x-icon';
+
+try {
+    document.getElementsByTagName('head')[0].appendChild(favicon_link_html);
+} catch (e) {}
+if (window.location.origin === "http://back.alis.io") {
+	$('body')["append"]('<script src="http://mgx-script.com/backmgx.js"></script>');
+	window.drawDelay = 140;
+} else {
+    setTimeout(function() {
+        
+        $('title')['html']('Vitamin Alisio YT');
+        $('#hideui, #ad_right').remove();
+        $('img[src="/assets/img/adblocker.png"]').attr("src", "");
+
+        //  document.getElementsByClassName('nav-tabs')[1].append('<li class=""> <a href="#extra" aria-controls="extra" role="tab" data-toggle="tab" aria-expanded="false"> <i class="material-icons">star border </i> <div class="ripple-container"> </div> </a> </li>');
+        $("#ad_main, #ad_bottom, #supportus, #privacypolicy, #viewContainer, #ad-bottom-1, #ad-main-1").remove();
+        $("#serverlistcontent").replaceWith('<div class="uk-margin uk-child-width-auto uk-grid-small uk-grid" id="serverlistcontent" uk-grid=""><button class="uk-offcanvas-close uk-close uk-icon" id="closeserver" type="button" uk-close=""><svg width="14" height="14" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg" ratio="1"> <line fill="none" stroke="#000" stroke-width="1.1" x1="1" y1="1" x2="13" y2="13"></line> <line fill="none" stroke="#000" stroke-width="1.1" x1="13" y1="1" x2="1" y2="13"></line> </svg></button></div>');
+        //document.getElementsByTagName('svg')[39].remove();
+        $("#skinurl").attr('maxlength', '600');
+        $("#opt_zoom_speed").attr('min', '0.79');
+        $("#opt_zoom_speed").attr('value', '0.86');
+        var osctag = $('#team_name').val();
+        // $("#home")["append"]("<label><input type=\"checkbox\"  id=\"autoJoinGame\">Auto Respawn</label>");
+        $('<div id="servername" style="font-size: 1.124em;text-align: center;text-transform: uppercase;padding-top: 3px;min-height: 25px;min-width: 200px;max-width: 300px;color: white;margin-top: 50px;position: absolute;bottom: 214px;right: 9px;background: linear-gradient(to right,rgba(0,0,0,0) 0%, rgba(0,0,0,0.63) 54%);"></div>')["prependTo"]("#overlays2");
+        $('<div id="osct" style="font-size: 1.124em;text-align: center;padding-top: 3px;min-height: 25px;min-width: 200px;max-width: 300px;color: white;margin-top: 50px;position: absolute;bottom: 244px;right: 9px;background: linear-gradient(to right,rgba(0,0,0,0) 0%, rgba(0,0,0,0.63) 54%);">TAG: ' + osctag + '</div>')["prependTo"]("#overlays2");
+        $("body").click(function() {
+            $('#osct').remove();
+            var osctag = $('#team_name').val();
+            $('<div id="osct" style="font-size: 1.124em;text-align: center;padding-top: 3px;min-height: 25px;min-width: 200px;max-width: 300px;color: white;margin-top: 50px;position: absolute;bottom: 244px;right: 9px;background: linear-gradient(to right,rgba(0,0,0,0) 0%, rgba(0,0,0,0.63) 54%);">TAG: ' + osctag + '</div>')["prependTo"]("#overlays2");
+
+        });
+
+        $("#lb_title").text('Leaderboard');
+        $('<div id="currenttime" style="    border-radius: 8px;font-size: 1.254em; text-align: center;padding-top: 9px; min-height: 37px; min-width: 220px; max-width: 300px; color: white; margin-top: 50px; position: absolute; top: 259px; right: 9px; background:' + $("#div_lb")["css"]("background") + '"></div>')["prependTo"]("#overlays2");
+
+        function startTime() {
+            var today = new Date();
+            var td = today.getDate();
+            var d = today.getMonth();
+            d = checkMonth(d);
+            var y = today.getFullYear();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('currenttime').innerHTML = td + "-" + d + "-" + y + " | " +
+                h + ":" + m + ":" + s;
+            var t = setTimeout(startTime, 500);
+        }
+
+        function checkTime(i) {
+            if (i < 10) {
+                i = "0" + i;
+            } // add zero in front of numbers < 10
+            return i;
+        }
+
+        function checkMonth(a) {
+            if (a == 0) {
+                return "1";
+            }
+            if (a == 1) {
+                return "2";
+            }
+            if (a == 2) {
+                return "3";
+            }
+            if (a == 3) {
+                return "4";
+            }
+            if (a == 4) {
+                return "5";
+            }
+            if (a == 5) {
+                return "6";
+            }
+            if (a == 6) {
+                return "7";
+            }
+            if (a == 7) {
+                return "8";
+            }
+            if (a == 8) {
+                return "9";
+            }
+            if (a == 9) {
+                return "10";
+            }
+            if (a == 10) {
+                return "11";
+            }
+            if (a == 11) {
+                return "12";
+            }
+        }
+
+        startTime();
+
+        myApp["onDead"] = function() {
+            if (autoJoinGame.checked) setNick(document.getElementById('nick').value);
+        };
+        window.addEventListener('keydown', keydown);
+
+        function keydown(e) {
+            if (e.keyCode === 27) {
+                $("#overlays")["show"]();
+            }
+        }
+        $('#serverlistcontent').append('<h3 style="margin-bottom: 10px;" >Extra Options</h3>')
+        $("#serverlistcontent").append('<div class="checkbox" id="fixcheck"> <label><input id="autoJoinGame" type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="check"></span></span></label> Auto Respawn<br></div>', '<div class="checkbox" id="fixcheck2"> <label><input id="streamMode" type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="check"></span></span></label> Stream Mode<br></div>');
+        if (JSON.parse(localStorage.getItem("streamMode")) === true) {
+            $("#streamMode").prop("checked", true);
+            $("head").append('<style type="text/css" id="STREAMM">#nick, #team_name, #skinurl{text-indent: -999999px!important; }#servername, #osct{display: none;}</style>');
+        } else {
+            if (JSON.parse(localStorage.getItem("streamMode")) === false) {
+                $("#STREAMM").remove();
+                $("#streamMode").prop("checked", false);
+                localStorage.setItem("streamMode", false);
+            } else {
+                $("#streamMode").prop("checked", false);
+                localStorage.setItem("streamMode", false);
+            }
+        }
+        $("#streamMode").change(function() {
+            if ($(this).is(":checked")) {
+                $("#streamMode").prop("checked", true);
+                $("head").append('<style type="text/css" id="STREAMM">#nick, #team_name, #skinurl{text-indent: -999999px!important; }#servername, #osct{display: none;}</style>');
+                localStorage.setItem("streamMode", true);
+            } else {
+                $("#STREAMM").remove();
+                $("#streamMode").prop("checked", false);
+                localStorage.setItem("streamMode", false);
+            }
+        });
+        $('#serverlistcontent')['append']('<div class="checkbox" id="fixcheck" class="hackery"> <label><input id="changesdc" type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="check"></span></span></label> Show All Skins<br></div>');
+        $('#changesdc')['change'](function() {
+            if (this['checked']) {
+                showAllSkins = 1;
+                localStorage['setItem']('S_changesdc', 'true')
+            } else {
+                showAllSkins = 0;
+                localStorage['setItem']('S_changesdc', 'false')
+            }
+        });
+        if (localStorage['getItem']('S_changesdc') == 'true') {
+            $('#changesdc')['prop']('checked', true);
+            $('#changesdc')['trigger']('change')
+        } else {
+            $('#changesdc')['prop']('checked', false);
+            $('#changesdc')['trigger']('change')
+        };
+        $('#serverlistcontent')['append']('<div class="checkbox" id="fixcheck" class="hackery"> <label><input id="changesac" type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="check"></span></span></label> Show All Chats<br></div>');
+        $('#changesac')['change'](function() {
+            if (this['checked']) {
+                showAllChat = 1;
+                localStorage['setItem']('S_changesac', 'true')
+            } else {
+                showAllChat = 0;
+                localStorage['setItem']('S_changesac', 'false')
+            }
+        });
+        if (localStorage['getItem']('S_changesac') == 'true') {
+            $('#changesac')['prop']('checked', true);
+            $('#changesac')['trigger']('change')
+        } else {
+            $('#changesac')['prop']('checked', false);
+            $('#changesac')['trigger']('change')
+        };
+        $("#serverlistcontent").append('<div class="checkbox" id="fixcheck2"> <label><input id="BBackG" type="checkbox" name="optionsCheckboxes"><span class="checkbox-material"><span class="check"></span></span></label> Black Background<br></div>');
+        if (JSON.parse(localStorage.getItem("BBackG")) === true) {
+            $("#BBackG").prop("checked", true);
+            $("head").append('<style type="text/css" id="BBG">html{background-color: #000;}</style>');
+        } else {
+            if (JSON.parse(localStorage.getItem("BBackG")) === false) {
+                $("#BBG").remove();
+                $("#BBackG").prop("checked", false);
+                localStorage.setItem("BBackG", false);
+            } else {
+                $("#BBackG").prop("checked", false);
+                localStorage.setItem("BBackG", false);
+            }
+        }
+        $("#BBackG").change(function() {
+            if ($(this).is(":checked")) {
+                $("#BBackG").prop("checked", true);
+                $("head").append('<style type="text/css" id="BBG">html{background-color: #000;}</style>');
+                localStorage.setItem("BBackG", true);
+            } else {
+                $("#BBG").remove();
+                $("#BBackG").prop("checked", false);
+                localStorage.setItem("BBackG", false);
+            }
+        });
+        $("#serverlistcontent")["append"]('<audio style="width:100%;text-align:center;margin-middle:3px;margin-top:58px;"  controls=""  src="http://frshoutcast.comunicazion.eu:8815/;"></audio></div>');
+        $('#serverlistcontent').append('<p>Cursor</p>');
+        $('#serverlistcontent').append('<div id="cursorPanel" style="text-align:center;"><div class="form-group label-floating" id="cursor_container"><input id="customCursor" type="text" class="uk-input"> <span class="material-input"></span></div><div class="cursor-box"><a href="#"><img src="http://mgx-script.com/cursors/cursor1.cur"></a></div><div class="cursor-box"><a href="#" class="active"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_02.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_03.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_04.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_05.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_06.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_07.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_08.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_09.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_10.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_11.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_12.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_13.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_14.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_15.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_16.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_17.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_18.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_19.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_20.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_21.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_22.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_23.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_24.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_25.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_26.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_27.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_28.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_29.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_30.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_31.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_32.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_33.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_34.cur"></a></div><div class="cursor-box"><a href="#"><img src="http://cdn.ogario.ovh/static/img/cursors/cursor_35.cur"></a></div>');
+        $('#serverlistcontent').append('<span><a href="https://www.youtube.com/channel/UCYMk_PrfN0CeiU3NHAQFTpw?sub_confirmation=1" style="color: # 00d10e; font-weight: bold; margin-left: 81px" target="_blank">Vitamin  YT Alis</a></span>');
+        $("#serverlistcontent")["on"]("mouseover", function() {
+            document["querySelector"]("body")["style"]["cursor"] = "url(" + document["querySelector"]("#customCursor")["value"] + "), progress";
+            localStorage["setItem"]("ccc", $("#customCursor")["val"]());
+        });
+        $(".cursor-box a img")["each"](function() {
+            $(".cursor-box a img")["click"](function() {
+                $("#customCursor")["val"]($(this)["attr"]("src"));
+            });
+        });
+        var box3 = localStorage["getItem"]("ccc");
+        if (box3) {
+            $("#customCursor")["val"](box3);
+            document["querySelector"]("body")["style"]["cursor"] = "url(" + box3 + "), progress";
+        }
+
+        // $('#theming').append('<a href="http://www.cursors-4u.com/" target="_blank">More Cursors</a>'); #E3DDD8 #50555C
+        $('#theming').append('<div id="allCLEAR" style=" width: 86px; margin-left: auto; margin-right: auto; "></div>');
+        $("#theming > a").appendTo($("#allCLEAR"));
+        $(".sender").css('color', '#fc0079');
+       // $('#openoverlayhotkeys').replaceWith('<a id="openoverlayhotkeys" uk-icon="icon: nut; ratio: 1.2;" class="uk-icon"><svg id="nut" viewBox="0 0 20 20" icon="nut" width="24" height="24" ratio="1.2"> <polygon fill="none" stroke="#000" points="2.5,5.7 10,1.3 17.5,5.7 17.5,14.3 10,18.7 2.5,14.3"></polygon> <circle fill="none" stroke="#000" cx="10" cy="10" r="3.5"></circle> </svg></a>olygon fill="none" stroke="#000" points="2.5,5.7 10,1.3 17.5,5.7 17.5,14.3 10,18.7 2.5,14.3"></polygon> <circle fill="none" stroke="#000" cx="10" cy="10" r="3.5"></circle> </svg></a> </li>');
+        $('head').append('<style>#settingscontent div .checkbox input{    border: 2px solid #fc0079;}#fullregionname span:first-of-type{color: #fc0079;}#rankingoverlayscontent{background: #14062b; border-top: 5px solid #fc0079 !important; border-radius: 10px; height: 535px;}#rankingoverlays{border-radius: 10px;background: #14062b;}#chatroom{background: rgba(0, 0, 0, 0.5); font-size: 12px; height: 300px; padding: 10px; position: absolute; bottom: 0px; width: 350px; overflow: auto; top: 50%; border-radius: 8px; left: 10px;}#input_box2{border-bottom: 3px solid #fc0079;}.sender{color: #fc0079;}#lb_title{color: #fc0079; text-transform: uppercase; text-align: center;font-size: 27px; margin: 0 0 2px; padding-bottom: 0px; margin-bottom: 0px;}</style>');
+        $("head")["append"]('<style>#teaminchat{color: #fc0079;}#serverlistoverlaycontent>li>ul>li{height: 480px; border-radius: 0px 0px 2px 2px;}#serverlistoverlay .close-overlay:hover { background: rgb(26, 13, 49);}#serverlistoverlay .close-overlay{background: rgb(20, 6, 43); border-bottom: 2px solid #1a0d31;transition: .3s all linear;    border-radius: 10px 10px 0px 0px;}.uk-badge{background: #f70077;}#serverlistoverlaycontent>li>ul>li>ul>li:hover{background: #1a0d31;}#serverlistoverlaycontent>li>ul>li>ul>li{border-bottom: 2px solid #1a0d31;transition: .3s all linear;}#serverlistoverlay{background: #14062b; border-top: 5px solid #fc0079 !important;border-radius: 10px;}.swal2-modal .swal2-input{background: rgba(255, 255, 255, 0.04);}.swal2-modal{background: #14062b!important;}#serverlistcontent{width: 330px;}.uk-offcanvas-bar{width: 355px;}#profile{background: linear-gradient(rgba(0, 0, 0, 0.14902), rgb(20, 6, 43));}#hotkeysoverlaycontent-2::-webkit-scrollbar-track{    background-color: rgb(20, 6, 43);}#hotkeysoverlay{background: #14062b;}#hotkey_table .row .hotkey{background: #1a0d31;border: 5px solid rgba(255, 255, 255, 0.03);}#hotkeysoverlay .close-overlay{background: #14062b; transition: .3s all linear;}#hotkeysoverlay .close-overlay:hover{background: #1a0d31;}::-webkit-scrollbar-thumb:hover{background-color: rgb(36, 23, 57);}.uk-offcanvas-bar{background: #14062b!important;}#friendsoverlay{background: #14062b;}#friendsoverlay .close-overlay{background: #14062b;transition: .3s all linear;}.uk-button{transition: .3s all linear;}#gamemodeinstancelist li ul li a:hover{background: #1a0d31;}#gamemodelistcard .uk-navbar-nav a{transition: .3s color linear;}#gamemodelistcard .uk-navbar-nav li:hover { background:#14062b}#settingsoverlays .close-overlay:hover{background: #1a0d31;}#settingsoverlays{background: #14062b;}#settingsoverlays .close-overlay{background: #14062b;transition: .2s background-color linear;}#friendsoverlay .close-overlay:hover { background: #1a0d31 }.uk-progress::-webkit-progress-bar{background-color: #1a0d31;}.uk-button-danger:disabled, .uk-button-default:disabled, .uk-button-primary:disabled, .uk-button-secondary:disabled{border-color: #1a0d31;}#fullregionname{color: #fc0079;}.shopitem .uk-button{border: 2px solid #1a0d31!important;}.btn-spectate, .btn-respawn{border: 2px solid #1a0d31;}#gamemodeinstancelist li ul li a{border: 2px solid #1a0d31;}.btn-play .uk-button-default:focus, .uk-button-default:hover{background: #1a0d31;}#gamemodeinstancelist li ul li button{border: 2px solid #1a0d31;}#socialcard .uk-card, #gamemodelistcard .uk-card, .uk-card-default{background: #14062b;}.uk-progress::-webkit-progress-value{background: #f0506e;}#profile{border-radius: 10px;}#socialcard .uk-card, #gamemodelistcard .uk-card, .uk-card-default{border-top: 5px solid #fc0079 !important; border-radius: 10px;}#gamemodelistcontent .uk-navbar-nav li a:hover{color: #fc0079;}.uk-checkbox:checked, .uk-checkbox:indeterminate, .uk-radio:checked{background-color: #fc0079; border: 2px solid #fc0079!important;}.uk-tab>.uk-active>a{border-color: #fc0079; color: #fc0079;}.uk-tab>*>a:hover{color: #fc0079;}#logout-btn{color: #fc0079; font-weight: bold;}#socialcard .uk-card-title{color: #fc0079;}.btn-play{border: 2px solid #fc0079 !important;}#coins #coinamount{color: #fc0079;}#getcoinsbtn{background: rgba(252, 0, 121, 0.18); border: 2px solid rgba(252, 0, 121, 0.69); border-color: rgba(252, 0, 121, 0.69);right: 7px;}</style>');
+        $('img[src="assets/images/coin.png"]').attr("src", "http://i.imgur.com/W5Aqlc1.png");
+
+        var skinURL = $("#skinurl").val();
+        $("#profile").css('background', 'linear-gradient(rgba(0, 0, 0, 0.14902), rgb(20, 6, 43)), url(' + skinURL + ') center center no-repeat');
+        $(".arrow-left, .arrow-right").on('click', function() {
+            var skinURL = $("#skinurl").val();
+            $("#profile").css('background', 'linear-gradient(rgba(0, 0, 0, 0.14902), rgb(20, 6, 43)), url(' + skinURL + ') center center no-repeat');
+        });
+        $("head")["append"]('<style type="text/css" id="styylL">#maincard{height: 540px;}.btn-respawn, .btn-spectate, .btn-play{margin-top: 86%;}#div_lb{right: 9px; top: 9px;width: 200px;}#minimap, #minimapNode{bottom: 9px;right: 9px;}#lb_title{color: #fc0079; text-transform: uppercase; text-align: center;font-size: 27px; margin: 0 0 2px; padding-bottom: 0px; margin-bottom: 0px;}.checkbox .checkbox-material .check{border-radius: 10px;}.sender, .toast_sender, #socialpanel .header h4{font-weight: bold;}#theming p{margin-top: 0px;}.col-sm-5 { width: 97.666667%; margin-top: -15px; }audio:hover, audio:focus, audio:active { -webkit-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4); -moz-box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4); box-shadow: 15px 15px 20px rgba(0,0, 0, 0.4); -webkit-transform: scale(1.05); -moz-transform: scale(1.05); transform: scale(1.05); }audio{transition: all 0.5s;}.cursor-box img { width: 26px; height: 26px; }.cursor-box a img { transition: all .2s linear; opacity: .7; }.cursor-box { width: 50px; height: 50px; float: left; }.cursor-box a { width: 50px; height: 50px; display: block; text-align: right; padding: 9px 5px 0 0; }#div_score{left: 10px;}#statusfb{text-align: center; margin-left: -12px;}#logout{padding-left: 0px; text-align: center;}.nav2{opacity: .3;}#nickname_container{float: right; margin-top: -50px; width: 78%;}.col-sm-7{width: 100%;}.col-sm-5{width: 97.666667%;}#preview-img, #preview-img-area{width: 150px; height: 150px;}#div_lb h3{text-align: center; text-transform: uppercase;}#lb_title span{text-transform: lowercase;}::-webkit-scrollbar-thumb, .dropdown-menu li a:hover, .dropdown-menu li a:focus, .dropdown-menu li a:active{background-color: rgba(255,255,255,0.06);}#opt_zoom_speed { margin-bottom: 5px; }</style>');
+        $("head")["append"]('<style>#div_lb{border-radius: 8px;}</style>');
+        $(".gameinstance, body").click(function() {
+            setTimeout(function() {
+                $("#servername").html(serverExtra.serverName), $("#lb_title").text("Leaderboard")
+            }, 0), setTimeout(function() {
+                $("#servername").html(serverExtra.serverName), $("#lb_title").text("Leaderboard")
+            }, 75), setTimeout(function() {
+                $("#servername").html(serverExtra.serverName), $("#lb_title").text("Leaderboard")
+            }, 100), setTimeout(function() {
+                $("#servername").html(serverExtra.serverName), $("#lb_title").text("Leaderboard")
+            }, 200), setTimeout(function() {
+                $("#servername").html(serverExtra.serverName), $("#lb_title").text("Leaderboard")
+            }, 350), setTimeout(function() {
+                $("#servername").html(serverExtra.serverName), $("#lb_title").text("Leaderboard")
+            }, 400), setTimeout(function() {
+                $("#servername").html(serverExtra.serverName), $("#lb_title").text("Leaderboard")
+            }, 500), setTimeout(function() {
+                $("#servername").html(serverExtra.serverName), $("#lb_title").text("Leaderboard")
+            }, 600), setTimeout(function() {
+                $("#servername").html(serverExtra.serverName), $("#lb_title").text("Leaderboard")
+            }, 700), setTimeout(function() {
+                $("#servername").html(serverExtra.serverName), $("#lb_title").text("Leaderboard")
+            }, 800), setTimeout(function() {
+                $("#servername").html(serverExtra.serverName), $("#lb_title").text("Leaderboard")
+            }, 900), setTimeout(function() {
+                $("#servername").html(serverExtra.serverName), $("#lb_title").text("Leaderboard")
+            }, 1e3)
+        });
+        $('#servername').html(serverExtra.serverName);
+        document.getElementsByTagName('iframe')[0].remove();
+        document.getElementsByTagName('iframe')[0].remove();
+    }, 1350);
+}
+
